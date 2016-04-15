@@ -35,7 +35,7 @@ public class AppConfig {
 
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
-        entityManagerFactoryBean.setPackagesToScan("br.com.emmanuelneri.app.model");
+        entityManagerFactoryBean.setPackagesToScan("br.com.emmanuelneri.app.model", "org.springframework.data.jpa.convert.threeten");
         entityManagerFactoryBean.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
