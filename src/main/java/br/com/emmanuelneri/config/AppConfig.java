@@ -1,8 +1,11 @@
 package br.com.emmanuelneri.config;
 
+import br.com.emmanuelneri.app.repository.PessoaRepository;
+import br.com.emmanuelneri.app.service.PessoaService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,7 +20,8 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({"br.com.emmanuelneri.app.service"})
+@EnableJpaRepositories(basePackageClasses = {PessoaRepository.class})
+@ComponentScan(basePackageClasses = {PessoaService.class})
 public class AppConfig {
 
     @Bean(name = "datasource")
