@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/pessoa")
+@RestController
+@RequestMapping(path = "/pessoa")
 public class PessoaController {
 
     @Autowired
     private PessoaService pessoaService;
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public List<Pessoa> listar() {
         return pessoaService.findAll();

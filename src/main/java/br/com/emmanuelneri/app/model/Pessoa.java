@@ -19,7 +19,7 @@ public class Pessoa implements Model<Long> {
     private Long id;
 
     @NotNull
-    @Column(name = "data_cadastro", columnDefinition = "DATE")
+    @Column(name = "data_cadastro")
     private LocalDate dataCadastro = LocalDate.now();
 
     @NotNull
