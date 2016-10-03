@@ -1,10 +1,39 @@
-var app = angular.module('pessoaController', []);
+var app = angular.module('springMvcAngular')
+    .controller('PessoaController', ['$scope', '$http', PessoaController]);
 
-app.controller('listarPessoas', function ($scope, $http) {
-    $http.get('http://localhost:8080/pessoa/listar').then(function(response) {
-        $scope.pessoas = response.data;
-    });
-});
+function PessoaController($scope, $http) {
+    iniciarPessoa();
+    listar($scope, $http);
+
+    $scope.salvar = function() {
+        $http.post('http://localhost:8080/pessoa/cadastrar', $scope.pessoa)
+            .success(function (data) {
+                iniciarPessoa();
+                listar($scope, $http);
+            })
+            .error(function(response){
+                $scope.erros = response;
+            });
+    };
+
+    $scope.editar = function(id) {
+        $scope.pessoa = $http.get("http://localhost:8080/pessoa/buscar", {
+            params: {id: id}
+        }).then(function(response) {
+            $scope.pessoa = response.data;
+        });
+    };
+
+    function iniciarPessoa() {
+        $scope.pessoa = {nome:'', cpf:''};
+    }
+
+    function listar($scope, $http) {
+        $http.get('http://localhost:8080/pessoa/listar').then(function(response) {
+            $scope.pessoas = response.data;
+        });
+    }
+}
 
 app.filter('cpf', function(){
     return function(cpf){

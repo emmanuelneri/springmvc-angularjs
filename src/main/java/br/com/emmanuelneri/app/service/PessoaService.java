@@ -18,4 +18,14 @@ public class PessoaService {
     public List<Pessoa> findAll() {
         return pessoaRepository.findAll();
     }
+
+    @Transactional(readOnly = true)
+    public Pessoa findById(Long id) {
+        return pessoaRepository.findOne(id);
+    }
+
+    @Transactional
+    public void save(Pessoa pessoa) {
+        pessoaRepository.save(pessoa);
+    }
 }
