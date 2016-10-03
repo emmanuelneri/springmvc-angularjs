@@ -32,7 +32,7 @@ public class PessoaController {
         return ResponseEntity.ok(pessoaService.findAll());
     }
 
-    @RequestMapping(path = "/buscar", method = RequestMethod.GET)
+    @RequestMapping(path = "/buscar/{id}", method = RequestMethod.GET)
     public ResponseEntity listarPessoas(@PathVariable("id") Long id) {
         return ResponseEntity.ok(pessoaService.findById(id));
     }
