@@ -21,23 +21,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/pessoa")
+@RequestMapping(path = "/pessoas")
 public class PessoaController {
 
     @Autowired
     private PessoaService pessoaService;
 
-    @RequestMapping(path = "/listar", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity listar() {
         return ResponseEntity.ok(pessoaService.findAll());
     }
 
-    @RequestMapping(path = "/buscar/{id}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity listarPessoas(@PathVariable("id") Long id) {
         return ResponseEntity.ok(pessoaService.findById(id));
     }
 
-    @RequestMapping(path = "cadastrar", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity salvar(@RequestBody Pessoa Pessoa)  {
         pessoaService.save(Pessoa);
         return ResponseEntity.ok().build();
